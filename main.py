@@ -3,12 +3,16 @@ from taipy.gui import Gui
 
 # import matplotlib.pyplot as plt
 
+# Define allowed leagues
+ALLOWED_LEAGUES = {"central", "pacific"}
 
 # define initial filters
 league = "central"
 
 
 def switch_data(league):
+    if league not in ALLOWED_LEAGUES:
+        raise ValueError("Invalid leaque selected")
     df = pd.read_csv(f"./data/sample_{league}.csv")
     return df
 
